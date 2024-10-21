@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { StackProvider, StackTheme } from "@stackframe/stack";
+import { stackServerApp } from "../stack";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Suspense } from "react";
@@ -28,7 +30,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           type="image/png"
         />
       </head>
-      <body className={inter.className}>
+      <body className={inter.className}><StackProvider app={stackServerApp}><StackTheme>
         <main className="text-base relative h-screen max-h-screen bg-background/95 text-foreground">
           <Suspense>
             <Providers>
@@ -36,7 +38,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </Providers>
           </Suspense>
         </main>
-      </body>
+      </StackTheme></StackProvider></body>
     </html>
   );
 }
