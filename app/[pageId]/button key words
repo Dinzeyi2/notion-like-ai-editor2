@@ -1,1 +1,69 @@
+import React, { useState } from 'react';
+import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { Button } from '@/components/ui/button';
+import { TrendingUp } from 'lucide-react';
+import KeywordTrendsDashboard from '../KeywordTrendsDashboard';
 
+const KeywordsAnalysisButton = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <>
+      <Button
+        onClick={() => setIsOpen(true)}
+        variant="ghost"
+        className="flex items-center gap-2 w-full rounded-lg border p-4 text-left text-sm transition-colors hover:bg-gray-100 dark:hover:bg-gray-900"
+      >
+        <div className="flex h-10 w-10 items-center justify-center rounded-lg border bg-white shadow-sm dark:border-gray-800 dark:bg-gray-900">
+          <TrendingUp className="h-5 w-5 text-blue-600" />
+        </div>
+        <div className="flex-1">
+          <h3 className="font-medium">Keyword Analysis</h3>
+          <p className="text-sm text-gray-500 dark:text-gray-400">
+            Analyze keyword trends and search volumes
+          </p>
+        </div>
+      </Button>
+
+      <Dialog open={isOpen} onOpenChange={setIsOpen}>
+        <DialogContent className="max-w-7xl h-[80vh] overflow-y-auto">
+          <KeywordTrendsDashboard />
+        </DialogContent>
+      </Dialog>
+    </>
+  );
+};
+
+export default KeywordsAnalysisButton;
+import { TrendingUp, Inbox, Sparkles } from 'lucide-react';
+import KeywordsAnalysisButton from '@/components/KeywordsAnalysisButton';
+
+export default function Navigation() {
+  return (
+    <div className="flex flex-col gap-0.5">
+      {/* Existing Navigation Items */}
+      <div className="px-4 py-2">
+        <div className="text-xs font-semibold text-gray-500">
+          Tools
+        </div>
+      </div>
+
+      {/* Existing Create with AI button */}
+      <Button 
+        variant="ghost" 
+        className="flex items-center gap-2 w-full rounded-lg border p-4 text-left text-sm"
+      >
+        <div className="flex h-10 w-10 items-center justify-center rounded-lg border bg-white shadow-sm">
+          <Sparkles className="h-5 w-5 text-blue-600" />
+        </div>
+        <div className="flex-1">
+          <h3 className="font-medium">Create with AI</h3>
+          <p className="text-sm text-gray-500">Generate content with AI</p>
+        </div>
+      </Button>
+
+      {/* New Keywords Analysis Button */}
+      <KeywordsAnalysisButton />
+    </div>
+  );
+}
