@@ -183,3 +183,11 @@ select {
 .lb-portal {
   z-index: 9999999;
 }
+/* Add any custom styles needed for the dialog */
+.dialog-overlay {
+  @apply fixed inset-0 bg-black/50;
+}
+
+.dialog-content {
+  @apply fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] rounded-lg bg-white p-6 shadow-lg;
+}
